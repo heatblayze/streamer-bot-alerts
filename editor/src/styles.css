@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+
+body {
+    background-color: #202126;
+    color: white;
+    width: 99%;
+    height: 99%;
+    position: absolute;
+    font-family: "Oxygen", Arial, Helvetica, sans-serif;
+    letter-spacing: 0.03em;
+}

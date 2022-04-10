@@ -11,14 +11,18 @@ Required:
 - create component to manage follows, raids, host
 - have custom variables for each type of alert, listed on a sidebar
 - each alert can be repositioned and scaled
+- multiple layouts for alert content (image, title, subtitle)
 - component to get a link to an Action from streamer.bot
 - construct all required actions on first launch
     - action to trigger alert
     - action to delay and display alert
 
 Later:
-- custom action linked to alert
+- custom action linked post alert
+- tts streamer.bot
 
+Maybe if possible:
+- moderator tools for queues via streamer.bot server
 
 
 

@@ -1,2 +1,13 @@
-<h1>Welcome to Streamer.bot Alerts!</h1>
-<p>This is an unofficial companion app that simplifies the creation of Twitch & StreamElements alerts.</p>
+<div class="center-text" style="width: 100%; height: 100%;">
+    <div style="animation: reveal 1.3s cubic-bezier(0.25,0.1,0.25,1) 1s 1; animation-fill-mode: both;">
+        <h1>Welcome to Streamer.bot Alerts</h1>
+        <p>This is an unofficial companion app that simplifies the creation of Twitch & StreamElements alerts.</p>
+    </div>
+    <div id="expand" style="overflow: hidden;">
+        <h2>Let's get you setup</h2>
+        <span *ngIf="stage == SetupStage.Locate">
+            <p>First you'll need to locate your Streamer.bot installation.</p>
+            <button>Locate Streamer.bot</button>
+        </span>
+    </div>
+</div>

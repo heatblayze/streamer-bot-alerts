@@ -14,10 +14,17 @@ export class AppComponent implements OnInit {
   constructor(private _electronService: ElectronService) {}
 
   ngOnInit(): void {
-    this._electronService.ipcRenderer.invoke('getSettings').then(settings => {
-      if(settings) {
-        
-      }
-    });
+    if(this._electronService.isElectronApp) {
+      this._electronService.ipcRenderer.invoke('getSettings').then(settings => {
+        if(settings) {
+          console.log('got settings.');
+          console.log(`streamer.bot path is ${JSON.parse(settings).streamerBotPath}`);
+        } else {
+          console.log('no settings file found.');
+        }
+      });
+    } else {
+      console.log('not an electron app!');
+    }
   }
 }
