@@ -1,0 +1,29 @@
+     Editor
+-----------------
+
+Required:
+- create ipcMain (and connecting ipcRenderer) calls to manage files
+- create component to manage sub & resub & gift sub alerts
+    - optionally include sub tiers
+    - include sub month ranges
+- create component to manage tip & cheer alerts
+    - include ranges
+- create component to manage follows, raids, host
+- have custom variables for each type of alert, listed on a sidebar
+- each alert can be repositioned and scaled
+- component to get a link to an Action from streamer.bot
+- construct all required actions on first launch
+    - action to trigger alert
+    - action to delay and display alert
+
+Later:
+- custom action linked to alert
+
+
+
+
+     Alerts
+-----------------
+
+Required:
+- base alert (TriggerAlert) delays for 10ms (?), js sends a request to trigger the associated event
