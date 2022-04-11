@@ -8,15 +8,15 @@ import { ElectronService } from 'ngx-electron';
 })
 export class AppComponent implements OnInit {
   title = 'editor';
-  
+
   public hasFilledActions = false;
 
-  constructor(private _electronService: ElectronService) {}
+  constructor(private _electronService: ElectronService) { }
 
   ngOnInit(): void {
-    if(this._electronService.isElectronApp) {
+    if (this._electronService.isElectronApp) {
       this._electronService.ipcRenderer.invoke('getSettings').then(settings => {
-        if(settings) {
+        if (settings) {
           console.log('got settings.');
           console.log(`streamer.bot path is ${JSON.parse(settings).streamerBotPath}`);
         } else {

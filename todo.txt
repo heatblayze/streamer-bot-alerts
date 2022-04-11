@@ -17,9 +17,13 @@ Required:
     - action to trigger alert
     - action to delay and display alert
 
+- Store location in Windows registry
+- Generate C# Code to place into Streamer.bot Action
+
 Later:
 - custom action linked post alert
 - tts streamer.bot
+- custom css animations
 
 Maybe if possible:
 - moderator tools for queues via streamer.bot server

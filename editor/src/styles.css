@@ -1,11 +1,72 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
 
+html, body { height: 100%; }
 body {
-    background-color: #202126;
+    background: #202126;
     color: white;
     width: 99%;
     height: 99%;
+    margin: 0;
     position: absolute;
     font-family: "Oxygen", Arial, Helvetica, sans-serif;
     letter-spacing: 0.03em;
+}
+
+.font-oxygen {
+    font-family: "Oxygen", Arial, Helvetica, sans-serif;
+}
+
+.button {
+    transition: 0.3s;
+    background: #646464;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 0.8em 1.5em;
+    font-size: 16px;
+}
+
+.button-primary {
+    transition: 0.3s;
+    background: #2773a0;
+}
+
+.button:hover {
+    transition: 0.3s;
+    background: #838383;
+}
+
+.button-primary:hover {
+    transition: 0.3s;
+    background: #2c81b3;
+}
+
+.button:focus {
+    outline-color: transparent;
+    outline-style: solid;
+    transition: 0.3s;
+    box-shadow: 0 0 0 2px #6784b9;
+}
+
+.button:active {
+    transition: 0.3s;
+    background: #474747;
+}
+
+.button-primary:active {
+    transition: 0.3s;
+    background: #22658b;
+}
+
+.button:disabled {
+    transition: 0.3s;
+    background: #424242;
+    color: #b1b1b1;
+}
+
+
+.button-primary:disabled {
+    transition: 0.3s;
+    background: #17455f;
+    color: #b1b1b1;
 }
