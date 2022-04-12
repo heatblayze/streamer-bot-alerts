@@ -12,14 +12,17 @@ module.exports = class settings {
         return path.join(__dirname, '/settings.json');
     }
 
+    exists() {
+        return fs.existsSync(this.settingsPath);
+    }
+
     ensureCreated() {
         console.log(`checking file exists at ${this.settingsPath}`);
-        if (!fs.existsSync(this.settingsPath)) {
-            console.log(`file does not exist at ${this.settingsPath}`);
+        if (!this.exists()) {            
             this.save(new settingsModel());
-            console.log(`created file at ${this.settingsPath}`);
+            return false;
         } else {
-            console.log(`file exists at ${this.settingsPath}`);
+            return true;
         }
     }
 

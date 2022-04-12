@@ -6,7 +6,9 @@ const settings = require("./settings");
 const isDev = require('electron-is-dev');
 
 try {
-    require('electron-reloader')(module)
+    require('electron-reloader')(__dirname, {ignored: [
+        '/settings.json'
+    ] })
 } catch (_) { }
 
 const mySettings = new settings();
@@ -37,7 +39,7 @@ const createWindow = () => {
         );
     } else {
         // Reload from the live server in dev mode
-        win.loadURL("http://localhost:4200")
+        win.loadURL("http://localhost:4200");
     }
 
     win.once('ready-to-show', () => {
@@ -46,7 +48,18 @@ const createWindow = () => {
     });
 
     win.webContents.on('did-fail-load', async () => {
-        await win.loadFile(path.join(__dirname, `/editor/dist/editor/index.html`));
+        if (!isDev) {
+            await win.loadURL(
+                url.format({
+                    pathname: path.join(__dirname, `/editor/dist/editor/index.html`),
+                    protocol: "file:",
+                    slashes: true
+                })
+            );
+        } else {
+            // Reload from the live server in dev mode
+            await win.loadURL("http://localhost:4200");
+        }
     });
 
     mainWindow = win;
@@ -63,6 +76,10 @@ function checkStreamerBotPath(pathname) {
 }
 
 app.whenReady().then(() => {
+    ipcMain.handle('getSettingsExists', function () {
+        return mySettings.exists();
+    });
+
     ipcMain.handle('getSettings', function () {
         return mySettings.getRaw();
     });

@@ -3,7 +3,7 @@
 
 Required:
 - create ipcMain (and connecting ipcRenderer) calls to manage files
-- create component to manage sub & resub & gift sub alerts
+- create component to manage sub & re-sub & gift sub alerts
     - optionally include sub tiers
     - include sub month ranges
 - create component to manage tip & cheer alerts
