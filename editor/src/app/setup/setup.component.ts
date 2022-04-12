@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { ElectronService } from 'ngx-electron';
 import { Action, StreamerBotSettings, SubAction } from '../shared/streamer-bot-settings.model';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { AnimationPoint, AnimationService, AnimationSpeed } from '../services/animation.service';
 
 enum SetupStage {
   Locate,
@@ -22,7 +23,8 @@ export class SetupComponent implements OnInit, AfterViewInit {
 
   constructor(
     private _electronService: ElectronService,
-    private _formBuilder: FormBuilder){ }  
+    private _formBuilder: FormBuilder,
+    private _animationService: AnimationService){ }  
 
   ngOnInit(): void {
     this.stage = SetupStage.Locate;
@@ -33,6 +35,9 @@ export class SetupComponent implements OnInit, AfterViewInit {
     gsap.fromTo(expand, { height: 0 }, { height: "auto", duration: 1, delay: 2.5 }).then(_ => {
       expand!.style.overflow = 'visible';
     });
+
+    this._animationService.slideIn(".slide-in", AnimationPoint.Bottom);
+    this._animationService.slideOut(".slide-out", AnimationPoint.Right);
   }
 
   findSettings() {

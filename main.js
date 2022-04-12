@@ -3,6 +3,11 @@ const path = require('path');
 const url = require("url");
 const fs = require("fs");
 const settings = require("./settings");
+const isDev = require('electron-is-dev');
+
+try {
+    require('electron-reloader')(module)
+} catch (_) { }
 
 const mySettings = new settings();
 var mainWindow;
@@ -22,13 +27,18 @@ const createWindow = () => {
     });
     win.setMenuBarVisibility(false);
 
-    win.loadURL(
-        url.format({
-            pathname: path.join(__dirname, `/editor/dist/editor/index.html`),
-            protocol: "file:",
-            slashes: true
-        })
-    );
+    if (!isDev) {
+        win.loadURL(
+            url.format({
+                pathname: path.join(__dirname, `/editor/dist/editor/index.html`),
+                protocol: "file:",
+                slashes: true
+            })
+        );
+    } else {
+        // Reload from the live server in dev mode
+        win.loadURL("http://localhost:4200")
+    }
 
     win.once('ready-to-show', () => {
         win.maximize();
@@ -70,7 +80,7 @@ app.whenReady().then(() => {
             title: 'Locate Streamer.bot.exe'
         });
         if (result) {
-            if(checkStreamerBotPath(result[0])) {
+            if (checkStreamerBotPath(result[0])) {
                 let data = mySettings.get();
                 data.streamerBotPath = result[0];
                 mySettings.save(data);
@@ -84,7 +94,7 @@ app.whenReady().then(() => {
 
     ipcMain.handle('getStreamerBotSettings', function () {
         let settingsData = mySettings.get();
-        if(settingsData) {
+        if (settingsData) {
             let settingsPath = path.join(settingsData.streamerBotPath, '../', '/data/settings.json');
             return fs.readFileSync(settingsPath, "utf8");
         } else {
